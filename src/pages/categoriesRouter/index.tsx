@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next"
 
-import List from '../components/List'
+import List from '../../components/List'
 
-import api from '../service/api'
+import api from '../../service/api'
 
 interface Categories {
     strCategory: string
@@ -31,7 +31,7 @@ export default function categories({categories}: CategoriesProps) {
             <section>
                 <ul>
                     {categories.map((categorie, i) => (
-                        <List key={i} link={`/categories/${categorie.strCategory}`} list={categorie.strCategory} />
+                        <List key={i} link={`/categoriesRouter/${categorie.strCategory}`} list={categorie.strCategory} />
                             )
                         )
                     }
