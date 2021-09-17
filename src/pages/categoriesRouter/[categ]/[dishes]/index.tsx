@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx: any) => {
     }
 
     const paths = mealsIdList.map((list: any) => ({
-        params: { categ: list.categ, dishs: list.idMeal }
+        params: { categ: list.categ, dishes: list.idMeal }
     }))
 
     return {
@@ -56,7 +56,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx: any) => {
 }
 
 export const getStaticProps: GetStaticProps<MealsProps> = async (context) => {
-    const dish = context.params?.dishs
+    const dish = context.params?.dishes
 
     const response = await api.get(`/lookup.php?i=${dish}`)
     const meals = response.data.meals
