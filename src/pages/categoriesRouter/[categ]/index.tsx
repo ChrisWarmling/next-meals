@@ -23,35 +23,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
         categories.push(meal.strCategory)
     }
 
-    let mealsList: string[] = []
-    let mealsIdList: string[] = []
-    for (let ctg of categories) {
-        const resp = await api.get(`/filter.php?c=${ctg}`)
-        
-        for (let id of resp.data.meals) {
-            const list = new Object()
-            list.categ = ctg
-            list.idMeal= id.idMeal
-            mealsIdList.push(list)
-
-        }
-    }
-
-    // console.log(mealsIdList)
-
-    const test = mealsIdList.map((list) => ({
-        params: {categ: list.categ, dishs: list.idMeal}
-    }))
-
-    console.log(test)
-
     const paths = categories.map((categorie) => ({
         params: { categ: categorie }
     }))
 
     return {
         fallback: false,
-        test
+        paths
     }
 }
 
